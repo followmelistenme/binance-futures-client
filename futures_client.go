@@ -6,10 +6,11 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"log"
 	"net/http"
 	"strconv"
 	"time"
+
+	"go.uber.org/zap"
 )
 
 type FuturesClient struct {
@@ -17,10 +18,10 @@ type FuturesClient struct {
 	SecretKey  string
 	BaseURL    string
 	HTTPClient *http.Client
-	Logger     *log.Logger
+	Logger     *zap.Logger
 }
 
-func NewFuturesClient(APIKey, secretKey, baseUrl string, logger *log.Logger) *FuturesClient {
+func NewFuturesClient(APIKey, secretKey, baseUrl string, logger *zap.Logger) *FuturesClient {
 	return &FuturesClient{APIKey: APIKey, SecretKey: secretKey, BaseURL: baseUrl, Logger: logger, HTTPClient: http.DefaultClient}
 }
 
